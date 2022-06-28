@@ -1,0 +1,36 @@
+.layout{
+    margin: 0 100px;
+}
+
+.header{
+    background-color: rgb(236, 232, 48);
+    padding:15px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+.logo{
+    font-size: 35px;
+    color:rgb(255, 255, 255);
+    margin: 0 !important;
+    cursor: pointer;
+}
+
+.username{
+    font-size:20px;
+    color:white;
+}
+
+.content{
+    height: 85vh;
+    box-shadow: 0 0 3px grey;
+    margin-top: 20px;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    padding: 15px;
+}
+
+@media screen and (max-width:700px){
+    .layout{
+        margin: 0 15px;
+    }
+}
