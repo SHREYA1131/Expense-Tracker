@@ -1,22 +1,29 @@
 import { Form, Input, message } from 'antd'
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../resources/authentication.css'
 import axios from 'axios';
+import Spinner from '../components/Spinner';
+
 function Login() {
+    const [loading , setloading]=useState(false)
     const navigate=useNavigate();
     const onFinish = async(values) => {
         try {
-            const response=await axios.post('/api/login',values);
-            localStorage.setItem('sg-money-user',JSON.stringify(response));
+            setloading(true)
+            const response=await axios.post('/api/users/login',values);
+            localStorage.setItem('sg-money-user',JSON.stringify({...response.data , password:''}));
+            setloading(false)
             message.success('Login Successful');
             navigate('/')
         } catch (error) {
+            setloading(false)
             message.error("something wrong");
         }
     }
     return (
         <div className='register'>
+            {loading && <Spinner/>}
 
             <div className="row justify-content-center align-items-center w-100 h-100">
                
@@ -29,8 +36,8 @@ function Login() {
                         <Form.Item label='Email' name='email'>
                             <Input />
                         </Form.Item>
-                        <Form.Item label='Password' name='password'>
-                            <Input />
+                        <Form.Item label='Password'  name='password'>
+                            <Input type="password"/>
                         </Form.Item>
                         <div className='d-flex justify-content-between align-items-center'>
                             <Link to='/register'>Not Registered,click here to register</Link>

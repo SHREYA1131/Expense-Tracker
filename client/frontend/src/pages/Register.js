@@ -1,21 +1,28 @@
 import { Form, Input, message } from 'antd'
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import '../resources/authentication.css'
 import axios from 'axios'
+import Spinner from '../components/Spinner'
+
 function Register() {
+    const [loading , setloading]=useState(false)
     const onFinish=async(values)=>{
         console.log(values);
         try{
+            setloading(true)
             await axios.post('/api/users/register',values);
-            message.success('User created');              
+            message.success('User created');     
+            setloading(false)         
         }
         catch(err){
             console.log(err.response.data);
+            setloading(false)
         }
     }
   return (
     <div className='register'>
+        {loading && <Spinner/>}
         
         <div className="row justify-content-center align-items-center w-100 h-100">
             <div className='col-md-5'>
@@ -32,7 +39,7 @@ function Register() {
                         <Input/>
                     </Form.Item>
                     <Form.Item label='Password' name='password'>
-                        <Input/>
+                    <Input type="password"/>
                     </Form.Item>
                     <div className='d-flex justify-content-between align-items-center'>
                         <Link to='/login'>Already Registered,click here to login</Link>
