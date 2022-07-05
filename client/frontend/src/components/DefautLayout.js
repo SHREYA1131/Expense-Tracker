@@ -28,4 +28,3 @@ function DefautLayout(props) {
 }
 
 export default DefautLayout
-
