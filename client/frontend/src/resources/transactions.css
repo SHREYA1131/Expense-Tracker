@@ -1,0 +1,25 @@
+.filter{
+    box-shadow: 0 0 3px grey;
+    padding: 15px 20px;
+    border-radius: 10px;
+}
+
+.transaction-form label{
+    color:rgba(0, 0, 0, 0.934);
+}
+
+.transaction-form input{
+    border: 1px solid grey;
+}
+.transaction-form input:focus{
+    border: 1px solid grey;
+}
+
+.ant-select-selector{
+    border: 1px solid grey !important;
+}
+
+.ant-select-selector:focus{
+    border: 1px solid grey !important;
+    outline: none !important;
+}

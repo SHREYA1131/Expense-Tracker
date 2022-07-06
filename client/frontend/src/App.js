@@ -30,5 +30,13 @@ export function ProtectedRoute(props){
     return <Navigate to="/login" />
   }
 }
+export function NonProtectedRoute(props){
+  if(localStorage.getItem('sg-money-user'))
+  {
+    return props.children 
+  } else{
+    return <Navigate to="/login" />
+  }
+}
 
 export default App;

@@ -1,5 +1,5 @@
 import { Form, Input, message } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../resources/authentication.css'
 import axios from 'axios';
@@ -21,6 +21,13 @@ function Login() {
             message.error("something wrong");
         }
     }
+
+    useEffect(()=>{
+        if(localStorage.getItem('sg-money-user')){
+            navigate('/')
+        }
+    },[])
+
     return (
         <div className='register'>
             {loading && <Spinner/>}
