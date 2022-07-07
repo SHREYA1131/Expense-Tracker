@@ -6,22 +6,21 @@ import axios from 'axios'
 import Spinner from '../components/Spinner'
 
 function Register() {
-    const [loading , setloading]=useState(false)
-    const navigate =useNavigate(true);
+    const [loading , setLoading]=useState(false)
+    const navigate =useNavigate(true); 
     const onFinish=async(values)=>{
         console.log(values);
         try{
-            setloading(true)
+            setLoading(true)
             await axios.post('/api/users/register',values);
             message.success('User created');     
-            setloading(false)         
+            setLoading(false)         
         }
         catch(err){
             console.log(err.response.data);
-            setloading(false)
+            setLoading(false)
         }
-    }
-
+    } 
     useEffect(()=>{
         if(localStorage.getItem('sg-money-user')){
             navigate('/')

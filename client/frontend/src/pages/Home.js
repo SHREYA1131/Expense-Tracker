@@ -1,88 +1,61 @@
-import { Form, Input, Modal, Select } from 'antd'
-import React, { useState } from 'react'
+
+import { AutoComplete, message } from 'antd';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import AddEditTransaction from '../components/AddEditTransaction';
 import DefautLayout from '../components/DefautLayout'
+import Spinner from '../components/Spinner';
 import '../resources/transactions.css'
 
 function Home() {
-  const [showAddEditTransactionModal , setShowAddEditTransactionModal] = useState(false);
+  const [showAddEditTransactionModal, setShowAddEditTransactionModal] = useState(false);
+    const [loading , setloading]=useState(false)
+    const [ transactionsData , setTransactionsData] = useState([]);
+    const getTransactions=async()=>{
+      try {
+        const user = JSON.parse(localStorage.getItem("sg-money-user"));
+        setloading(true)
+        const response=await axios.post('/api/transactions/get-all-transactions',{userid : user._id});
+        console.log(response.data);
+        setTransactionsData(response.data);
+        setloading(false)
+    } catch (error) {
+        setloading(false)
+        message.error("something went wrong");
+    }
+    }
+    
+    useEffect(()=>{
+      getTransactions()
+    }, []);
 
-  const onFinish=(values)=>{
-    console.log(values);
-  }
-  
   return (
     <DefautLayout>
-        <div className="filter d-flex justify-content-between align-items-center">
-          <div>
-            
-          </div>
-
-          <div>
-            <button className="primary" onClick={()=>setShowAddEditTransactionModal(true)}>
-              ADD NEW
-            </button>
-          </div>
+      {loading && <Spinner/>}
+      <div className="filter d-flex justify-content-between align-items-center">
+        <div>
 
         </div>
 
-
-        <div className="table-analtics">
-
+        <div>
+          <button className="primary" onClick={() => setShowAddEditTransactionModal(true)}> 
+            ADD NEW
+          </button>
         </div>
 
-        <Modal title="Add Transaction" 
-        visible={showAddEditTransactionModal} 
-        onCancel={()=>setShowAddEditTransactionModal(false)}
-        footer={false}
-        > 
-          
-          <Form layout="vertical" className='transaction-form' onFinish={onFinish}>
+      </div>
 
-            <Form.Item label="Amount" name="amount">
-              <Input type="test"/>
-            </Form.Item>
-            <Form.Item label="Type" name="type">
-              <Select>
-              <Select.Option value="income">Income</Select.Option>
-              <Select.Option value="expense">Expense</Select.Option>
-              </Select>
-            </Form.Item>
-            
-            <Form.Item label="Category" name="category">
-              <Select>
-                {" "}
-              <Select.Option value="salary">Salary</Select.Option>
-              <Select.Option value="freelance">Freelance</Select.Option>
-              <Select.Option value="Food">Food</Select.Option>
-              <Select.Option value="entertainment">Entertainment</Select.Option>
-              <Select.Option value="education">Education</Select.Option>
-              <Select.Option value="medical">Medical</Select.Option>
-              <Select.Option value="tax">Tax</Select.Option>
-              </Select>
-            </Form.Item>
 
-            
-            <Form.Item label="Date" name="date">
-              <Input type="date"/>
-            </Form.Item>
+      <div className="table-analtics">
 
-            <Form.Item label="Reference" name="reference">
-              <Input type="text"/>
-            </Form.Item>
+      </div>
 
-            <Form.Item label="Description" name="description">
-              <Input type="text"/>
-            </Form.Item>
-
-            <div className="d-flex justify-content-end">
-              <button className="primary" type="submit">SAVE</button>
-            </div>
-
-          </Form>
-        </Modal>
+      {showAddEditTransactionModal && (<AddEditTransaction
+      showAddEditTransactionModal={showAddEditTransactionModal} 
+      setShowAddEditTransactionModal={setShowAddEditTransactionModal} 
+      />)}; 
 
     </DefautLayout>
   )
 }
-
 export default Home
