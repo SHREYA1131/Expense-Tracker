@@ -1,6 +1,7 @@
 const express = require('express');
 const Transaction = require('../models/Transaction');
 const router = express.Router();
+const moment = require('moment');
 
 router.post('/add-transaction', async function (req, res) {
     try {
@@ -12,12 +13,27 @@ router.post('/add-transaction', async function (req, res) {
     }
 });
 
-router.post('/get-all-transactions', async(req,res)=>{
+router.post('/get-all-transactions', async (req, res) => {
+    const { frequency, selectedRange,type } = req.body;
     try {
-        const transactions = await Transaction.find({userid : req.body.userid});
-        response.send(transactions)
+        const transactions = await Transaction.find(
+            {
+                ...(frequency !== 'custom' ? {
+                    date: {
+                        $gt: moment().subtract(Number(req.body.frequency), 'd').toDate(),
+                    },
+                } : {
+                    date: {
+                        $gte: selectedRange[0],
+                        $lte: selectedRange[1]
+                    },
+                }),
+                userid: req.body.userid,
+                ...(type!=='all' && {type})
+            });
+        res.send(transactions)
     } catch (error) {
-        res.status(500).json({ error: err.message });        
+        res.status(500).json({ error: error.message });
     }
 })
 

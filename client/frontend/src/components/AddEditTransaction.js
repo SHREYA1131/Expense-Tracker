@@ -12,6 +12,7 @@ function AddEditTransaction(props) {            //showAddEditTransactionModal, s
           const user = JSON.parse(localStorage.getItem("sg-money-user"));
             setLoading(true);
             await axios.post('/api/transactions/add-transaction' , {...values , userid : user._id,});
+            props.getTransactions();
             message.success('transaction added successfully'); 
             props.setShowAddEditTransactionModal(false);    
             setLoading(false);         
