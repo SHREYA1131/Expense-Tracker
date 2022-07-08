@@ -12,6 +12,7 @@ import Analytics from '../components/Analytics';
 const { RangePicker } = DatePicker;
 
 function Home() {
+
   const [showAddEditTransactionModal, setShowAddEditTransactionModal] = useState(false);
   const [loading, setloading] = useState(false)
   const [transactionsData, setTransactionsData] = useState([]);
@@ -19,14 +20,19 @@ function Home() {
   const [frequency, setFrequency] = useState('7');
   const [viewType, setViewType] = useState('table');
   const [type, setType] = useState('all');
+
   const getTransactions = async () => {
     try {
       const user = JSON.parse(localStorage.getItem("sg-money-user"));
       setloading(true)
-      const response = await axios.post('/api/transactions/get-all-transactions', { userid: user._id, frequency, ...(frequency === 'custom' && { selectedRange }), type });
+
+      const response = await axios.post('/api/transactions/get-all-transactions', 
+        { userid: user._id, frequency, ...(frequency === 'custom' && { selectedRange }), type });
+
       console.log(response.data);
       setTransactionsData(response.data);
       setloading(false)
+
     } catch (error) {
       setloading(false)
       message.error("something went wrong");
@@ -59,9 +65,11 @@ function Home() {
       dataIndex: 'reference',
     }
   ];
+
   return (
     <DefautLayout>
       {loading && <Spinner />}
+
       <div className="filter d-flex justify-content-between align-items-center">
         <div className='d-flex'>
           <div className='d-flex flex-column'>
@@ -78,6 +86,7 @@ function Home() {
               </div>
             )}
           </div>
+
           <div className='d-flex flex-column mx-5'>
             <h6>Select Type</h6>
             <Select value={type} onChange={(value) => setType(value)}>
@@ -93,8 +102,10 @@ function Home() {
         <div className='d-flex'>
           <div>
             <div className='view-switch mx-5' >
-              <UnorderedListOutlined className={`mx-3 ${viewType === 'table' ? 'active - icon' : 'inactive-icon'}`} onClick={()=>setViewType('table')} size={30} />
-              <AreaChartOutlined className={`${viewType === 'analytics' ? 'active - icon' : 'inactive-icon'}`} onClick={()=>setViewType('analytics')} size={30} />
+              <UnorderedListOutlined className={`mx-3 ${viewType === 'table' ? 'active-icon' : 'inactive-icon'}`} 
+              onClick={()=>setViewType('table')} size={30} />
+              <AreaChartOutlined className={`${viewType === 'analytics' ? 'active-icon' : 'inactive-icon'}`} 
+              onClick={()=>setViewType('analytics')} size={30} />
             </div>
           </div>
           <button className="primary" onClick={() => setShowAddEditTransactionModal(true)}>

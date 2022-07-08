@@ -1,6 +1,7 @@
 import { Progress } from 'antd';
 import React from 'react'
 import '../resources/analytics.css'
+
 function Analytics({transactions}) {
  console.log(transactions);
   const totalTransactions = transactions.length;
@@ -11,8 +12,11 @@ function Analytics({transactions}) {
  
   const totalTurnover = transactions.reduce((acc, transaction) => acc+ transaction.amount, 0);
   console.log(totalTurnover);
-  const totalIncomeTurnover = transactions.filter((transaction)=>transaction.type === 'income').reduce((acc, transaction) => acc+ transaction.amount, 0);
-  const totalExpenseTurnover = transactions.filter((transaction)=>transaction.type === 'expense').reduce((acc, transaction) => acc+ transaction.amount, 0);
+  const totalIncomeTurnover = transactions.filter((transaction)=>transaction.type==='income').reduce((acc, transaction) => acc+ transaction.amount, 0);
+      console.log("totalIncomeTurnover= " + totalIncomeTurnover);
+  const totalExpenseTurnover = transactions.filter(
+    (transaction)=>transaction.type==='expense').reduce(
+      (acc, transaction) => acc+ transaction.amount, 0);
   const totalIncomeTurnoverPercentage = (totalIncomeTurnover/ totalTurnover) * 100;
   const totalExpenseTurnoverPercentage = (totalExpenseTurnover/ totalTurnover) * 100;
   return (
