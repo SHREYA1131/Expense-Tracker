@@ -11,10 +11,23 @@ function AddEditTransaction(props) {            //showAddEditTransactionModal, s
         try{
           const user = JSON.parse(localStorage.getItem("sg-money-user"));
             setLoading(true);
-            await axios.post('/api/transactions/add-transaction' , {...values , userid : user._id,});
-            props.getTransactions();
-            message.success('transaction added successfully'); 
+            if(props.selectedItemForEdit){
+              await axios.post('/api/transactions/edit-transaction' , {
+                payload :{
+                  ...values ,
+                 userid : user._id,
+                },
+                 transactionId : props.selectedItemForEdit._id,
+              });
+              props.getTransactions();
+              message.success('transaction updated successfully'); 
+            }
+            else{
+              await axios.post('/api/transactions/add-transaction' , {...values , userid : user._id,});
+
+            }
             props.setShowAddEditTransactionModal(false);    
+            props.setSelectedItemForEdit(null)
             setLoading(false);         
         }
         catch(err){
@@ -23,13 +36,14 @@ function AddEditTransaction(props) {            //showAddEditTransactionModal, s
         }
     }; 
     return (
-    <Modal title="Add Transaction" 
+    <Modal 
+        title={props.selectedItemForEdit ? 'Edit Transaction' : 'Add Transaction'}
         visible={props.showAddEditTransactionModal} 
         onCancel={()=>props.setShowAddEditTransactionModal(false)}
         footer={false}
         > 
           {loading && <Spinner/>}
-          <Form layout="vertical" className='transaction-form' onFinish={onFinish}>
+          <Form layout="vertical" className='transaction-form' onFinish={onFinish} initialValues={props.selectedItemForEdit}>
 
             <Form.Item label="Amount" name="amount">
               <Input type="test"/>
@@ -46,9 +60,11 @@ function AddEditTransaction(props) {            //showAddEditTransactionModal, s
                 {" "}
               <Select.Option value="salary">Salary</Select.Option>
               <Select.Option value="freelance">Freelance</Select.Option>
-              <Select.Option value="Food">Food</Select.Option>
+              <Select.Option value="food">Food</Select.Option>
               <Select.Option value="entertainment">Entertainment</Select.Option>
               <Select.Option value="education">Education</Select.Option>
+              <Select.Option value="investment">Investment</Select.Option>
+              <Select.Option value="travel">Travel</Select.Option>
               <Select.Option value="medical">Medical</Select.Option>
               <Select.Option value="tax">Tax</Select.Option>
               </Select>

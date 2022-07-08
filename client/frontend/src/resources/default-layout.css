@@ -27,6 +27,7 @@
     border-top-right-radius: 25px;
     border-top-left-radius: 25px;
     padding: 15px;
+    overflow-y: scroll;
 }
 
 .spinner{

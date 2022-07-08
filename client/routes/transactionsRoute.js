@@ -13,6 +13,26 @@ router.post('/add-transaction', async function (req, res) {
     }
 });
 
+router.post('/edit-transaction', async function (req, res) {
+    try {
+        await Transaction.findOneAndUpdate({_id: req.body.transactionId} , req.body.payload)
+
+        res.send('Transaction updated Successfully');
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+router.post('/delete-transaction', async function (req, res) {
+    try {
+        await Transaction.findOneAndDelete({_id: req.body.transactionId})
+
+        res.send('Transaction updated Successfully');
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 router.post('/get-all-transactions', async (req, res) => {
     const { frequency, selectedRange,type } = req.body;
     try {
