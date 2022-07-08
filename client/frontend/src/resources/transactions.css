@@ -1,7 +1,7 @@
 .filter{
-    box-shadow: 0 0 3px grey;
+    box-shadow: 0 0 2px grey;
     padding: 15px 20px;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .transaction-form label{
@@ -26,7 +26,7 @@
 .view-switch{
    border: 1px solid rgba(0, 0, 0, 0.784);
    padding: 5px 10px;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 .anticon svg{
     font-size: 20px;
@@ -38,3 +38,13 @@
 .inactive-icon{
     color: grey;
 }
+.ant-picker-range{
+    border: 1px solid black !important;
+}
+
+@media screen and (max-width:600px){
+    .filter{
+        overflow-x: scroll;
+    }
+}
+    

@@ -33,8 +33,8 @@ function Analytics({transactions}) {
             <h5>Income:{totalIncomeTransactions.length}</h5>
             <h5>Expense:{totalExpenseTransactions.length}</h5>
             <div className='progress-bars'>
-              <Progress className="mx-5" strokeColor="green" type='circle' percent={totalIncomeTransactionsPercentage.toFixed(0)} />
-              <Progress strokeColor="red" type='circle' percent={totalExpenseTransactionsPercentage.toFixed(0)} />
+              <Progress className="mx-5" strokeColor="#60E751" type='circle' percent={totalIncomeTransactionsPercentage.toFixed(0)} />
+              <Progress strokeColor="#E5572F" type='circle' percent={totalExpenseTransactionsPercentage.toFixed(0)} />
             </div>       
           </div>
         </div>
@@ -45,13 +45,13 @@ function Analytics({transactions}) {
             <h5>Income:{totalIncomeTurnover}</h5>
             <h5>Expense:{totalExpenseTurnover}</h5>
             <div className='progress-bars'>
-              <Progress className="mx-5" strokeColor="green" type='circle' percent={totalIncomeTurnoverPercentage.toFixed(0)} />
-              <Progress strokeColor="red" type='circle' percent={totalExpenseTurnoverPercentage.toFixed(0)} />
+              <Progress className="mx-5" strokeColor="#60E751" type='circle' percent={totalIncomeTurnoverPercentage.toFixed(0)} />
+              <Progress strokeColor="#E5572F" type='circle' percent={totalExpenseTurnoverPercentage.toFixed(0)} />
             </div>       
           </div>
         </div>
       </div>
-
+      <hr/>
       <div className="row mt-5">
         <div className="col-md-6">
           <div className="income-category-analysis">
@@ -66,7 +66,7 @@ function Analytics({transactions}) {
               )
             })}
           </div>
-
+          
         </div>
         <div className="col-md-6">
           <div className="category-analysis">
