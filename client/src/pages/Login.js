@@ -48,7 +48,7 @@ function Login() {
                         </Form.Item>
                         <div className='d-flex justify-content-between align-items-center'>
                             <Link to='/register'>Not Registered,click here to register</Link>
-                            <button className='secondary' type="submit">Login</button>
+                            <button className='primary' type="submit">Login</button>
                         </div>
                     </Form>
                 </div>
