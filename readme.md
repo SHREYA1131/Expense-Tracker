@@ -1,5 +1,5 @@
-<img alt="HTML" src="https://img.shields.io/badge/HTML-•-red" /> <img alt="CSS" src="https://img.shields.io/badge/CSS/SCSS-•-orange" /> <img alt="JS" src="https://img.shields.io/badge/JS-•-blue" />
-<img alt="ReactJS" src="https://img.shields.io/badge/ReactJS-•-brown" />
+<img alt="HTML" src="https://img.shields.io/badge/HTML-•-red" /> <img alt="CSS" src="https://img.shields.io/badge/CSS-•-orange" /> <img alt="JS" src="https://img.shields.io/badge/JS-•-blue" />
+<img alt="ReactJS" src="https://img.shields.io/badge/ReactJS-•-purple" />
 <img alt="NodeJS" src="https://img.shields.io/badge/NodeJS-•-brown" />
 <img alt="MongoDB" src="https://img.shields.io/badge/MongoDB-•-green" />
 <img alt="EXPRESS" src="https://img.shields.io/badge/EXPRESS-•-pink" />
