@@ -10,7 +10,7 @@
 
 <img src="landing-page.PNG" align="left" width="463" hspace="10" vspace="10">
 <img src="l-p-2.PNG" align="left" width="463" hspace="10" vspace="10">
-</br></br>
+</br></br></br>
 
 A user-organised expense/income tracking system that lets you log-in using the registered credentials, view/manage/update/delete your expenses and income, categorising them with corresponding tags through `CRUD` operations using axios API.
 
