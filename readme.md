@@ -8,8 +8,8 @@
 > The project is hosted online through Heroku - [Check it out](https://expense-tracker-11-21.herokuapp.com/login)
 
 
-<img src="landing-page.PNG" align="left" width="455" hspace="10" vspace="10">
-<img src="l-p-2.PNG" align="left" width="455" hspace="10" vspace="10">
+<img src="landing-page.PNG" align="left" width="460" hspace="10" vspace="10">
+<img src="l-p-2.PNG" align="left" width="460" hspace="10" vspace="10">
 </br></br>
 
 A user-organised expense/income tracking system that lets you log-in using the registered credentials, view/manage/update/delete your expenses and income, categorising them with corresponding tags through `CRUD` operations using axios API.
