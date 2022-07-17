@@ -24,7 +24,7 @@ The application's backend is supported through a self-designed system hosted rem
  - Exploits `AXIOS API` supported through MongoDB Atlas, managed by `NodeJS`.
  - The website is integrated with `ExpressJS` as its templating engine, providing the users with multiple routes to Frequency, Type, Analytic View etc.
  - Has the feature of chart and line analysis for income/expenses.
- - Facilitates the user to view their expenses/income categorywise for any time interval.
+ - Facilitates the user to view their expenses/income category wise for any time interval.
 
 </br>
 
